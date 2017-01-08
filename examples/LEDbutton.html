@@ -1,0 +1,38 @@
+<!-- Replace your-device-ID-goes-here with your actual device ID
+and replace your-access-token-goes-here with your actual access token-->
+
+<!DOCTYPE>
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Anton');
+</style>
+</head>
+  <body>
+    <center>
+  	<h1 style="font-family:Anton">Web Light Switch</h1>
+  		<button type="button" style="height:50px;width:50%; background-color:white; font-size: 24px; border: 2px solid black"  onclick="ledOn()">On</button>
+ 		 <br>
+ 		 <br>
+		<button type="button" style="height:50px;width:50%; background-color:black; font-size: 24px; color: white; border: 2px solid white"onclick="ledOff()">Off</button>
+    <div id="resp"></div>
+    </center>
+<script>
+function ledOn() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "https://api.particle.io/v1/devices/your-device-ID-goes-here/led?access_token=your-access-token-goes-here", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("arg=on");
+  document.getElementById("resp").innerHTML = xhttp.responseText
+}
+
+function ledOff() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "https://api.particle.io/v1/devices/your-device-ID-goes-here/led?access_token=your-access-token-goes-here", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("arg=off");
+  document.getElementById("resp").innerHTML = xhttp.responseText
+}
+</script>
+</body>
+</html>
